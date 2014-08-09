@@ -7,6 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav>
+  <p><%= link_to 'Register', new_user_path %></p>
+</nav>
+
+<div>
+  <p><%= flash[:notice] %></p>
+</div>
 
 <%= yield %>
 
