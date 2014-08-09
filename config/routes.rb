@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   root 'homepage#index'
 
   resources :users
+  resources :user_sessions
+
+  get 'login' => 'user_sessions#new', :as => :login
+  post 'logout' => 'user_sessions#destroy', :as => :logout
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

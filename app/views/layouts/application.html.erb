@@ -2,13 +2,19 @@
 <html>
 <head>
   <title>FakeApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <nav>
-  <p><%= link_to 'Register', new_user_path %></p>
+  <% if logged_in? %>
+    <p><%= link_to 'Logout', logout_path, method: :post %></p>
+  <% else %>
+    <p><%= link_to 'Register', new_user_path %></p>
+
+    <p><%= link_to 'Login', login_path %></p>
+  <% end %>
 </nav>
 
 <div>
