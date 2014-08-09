@@ -43,23 +43,13 @@ feature 'user auth' do
   end
 
   scenario 'user can logout' do
-    create(:user)
-    visit root_path
-    click_link 'Login'
-    fill_in 'Email', with: 'bob@example.com'
-    fill_in 'Password', with: 'password'
-    click_button 'Login'
+    login_user
     click_link 'Logout'
     expect(page).to have_content 'Successfully logged out!'
   end
 
   scenario 'user sees login/register links if not logged in and logout link if logged in' do
-    create(:user)
-    visit root_path
-    click_link 'Login'
-    fill_in 'Email', with: 'bob@example.com'
-    fill_in 'Password', with: 'password'
-    click_button 'Login'
+    login_user
     expect(page).to_not have_link 'Login'
     expect(page).to_not have_link 'Register'
     expect(page).to have_link 'Logout'
@@ -69,4 +59,5 @@ feature 'user auth' do
     expect(page).to have_link 'Register'
     expect(page).to_not have_link 'Logout'
   end
+
 end
