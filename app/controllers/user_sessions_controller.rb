@@ -5,18 +5,21 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    if @user = login(params[:email], params[:password])
-      flash[:notice] = 'Successfully logged in!'
-      redirect_to(root_path)
+    user = User.find_by(email: params[:email])
+    throttle = Throttle.new
+
+    if throttle.clear?(user) && (@user = login(params[:email], params[:password]))
+      @user.reset_failed_attempts
+      redirect_to(root_path, notice: 'Successfully logged in!')
     else
-      flash[:notice] = 'Incorrect email/password combo'
+      flash[:notice] = throttle.update_failures_status(user)
       render :new
     end
   end
 
   def destroy
     logout
-    flash[:notice] = 'Successfully logged out!'
-    redirect_to root_path
+    redirect_to(root_path, notice: 'Successfully logged out!')
   end
+
 end

@@ -25,15 +25,18 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :test, :development do
   gem 'rspec-rails', '~> 3.0.2'
+  gem 'pry', '~> 0.10.0'
 end
 
 group :test do
   gem 'capybara', '~> 2.2.1'
   gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'timecop', '~> 0.7.1'
 end
 
 gem 'sorcery', '~> 0.8.6'
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'time_difference', '~> 0.3.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

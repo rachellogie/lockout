@@ -1,1 +1,5 @@
-<h3>Welcome to Fake App!</h3>
+<h3 class="text-center">Welcome to Fake App!</h3>
+
+<% unless logged_in? %>
+  <p class="text-center">You are not logged in</p>
+<% end %>
